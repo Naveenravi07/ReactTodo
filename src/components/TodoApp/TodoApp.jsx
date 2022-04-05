@@ -23,8 +23,9 @@ export class TodoApp extends Component {
     }
 
     deleteItem = (id) => {
+        console.log(id);
         let dummyarray = this.state.items
-        dummyarray.splice(id)
+        dummyarray.splice(id,1)
         this.setState({items: dummyarray})
     }
     render() {
@@ -55,14 +56,12 @@ export class TodoApp extends Component {
                 <div className='todo-item'>
                     <ul> {
                         this.state.items.map((data, index) => (
-                            <li onClick={
-                                    () => this.deleteItem(index)
-                                }
-                                key={index}>
+                            <li key={index}>
                                 {data}
-                                <i className='fa-solid fa-trash-can'>
-                               
-                                </i>
+                                <i onClick={
+                                        () => this.deleteItem(index)
+                                    }
+                                    className='fa-solid fa-trash-can'></i>
                             </li>
                         ))
                     } </ul>
